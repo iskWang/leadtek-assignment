@@ -7,9 +7,11 @@ import { getMetrics } from './services/metrics'
 
 const app = express()
 const httpServer = createServer(app)
+const WS_PATH = process.env.WS_PATH || '/ws'
 const io = new Server(httpServer, {
+  path: WS_PATH,
   cors: {
-    origin: process.env.CORS_ORIGIN || 'http://localhost:5173',
+    origin: process.env.CORS_ORIGIN || 'http://localhost:3002',
     methods: ['GET', 'POST'],
   },
 })
